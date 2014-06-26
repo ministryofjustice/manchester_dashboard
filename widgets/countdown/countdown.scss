@@ -1,0 +1,72 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$alpha-color: #d53880;
+$beta-color: #f47738;
+$live-color: #85994b;
+ 
+// ----------------------------------------------------------------------------
+// Widget-clock styles
+// ----------------------------------------------------------------------------
+.widget-countdown {
+  vertical-align: top !important;
+ 
+  .countdown-time {
+    margin-top: 20px;
+    font-size: 60px;
+    font-weight: bold;
+    margin-top: 35px !important;
+    text-transform: none;
+  }
+ 
+  .more-info {
+    bottom: 12px;
+    font-size: 18px;
+    color: #fff;
+    opacity: 1;
+  }
+
+  &.assessment {
+    background-color: $alpha-color !important;
+
+    .title { 
+      text-transform: uppercase;
+      padding: 0 40px;
+      font-size: 40px;
+      line-height: 1.1em;
+    }
+  }
+  
+  &.alpha {
+    background-color: $alpha-color !important;
+
+    .title { 
+      text-transform: uppercase;
+      padding: 0 40px;
+      font-size: 40px;
+      line-height: 1.1em;
+    }
+  }
+
+  &.beta {
+    background-color: $beta-color !important;
+
+    .title { 
+      text-transform: uppercase;
+      padding: 0 40px;
+      font-size: 40px;
+      line-height: 1.1em;
+    }
+  }
+
+  &.live {
+    background-color: $live-color !important;
+
+    .title { 
+      text-transform: uppercase;
+      padding: 0 40px;
+      font-size: 40px;
+      line-height: 1.1em;
+    }
+  }
+}
