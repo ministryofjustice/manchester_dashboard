@@ -40,7 +40,7 @@ SCHEDULER.every '1s', :first_in => 0 do
     end
 
     { 
-      name: job['name'].gsub('CLA',''),
+      name: job['name'],
       state: color,
       number: job['lastBuild'] ? job['lastBuild']['number'] : 0,
       timestamp: job['lastBuild'] ? job['lastBuild']['timestamp'] : 0,
@@ -49,6 +49,6 @@ SCHEDULER.every '1s', :first_in => 0 do
   }
 
   jobs.sort_by { |job| job['name'] }
-
+  
   send_event('jenkins_jobs', { jobs: jobs })
 end

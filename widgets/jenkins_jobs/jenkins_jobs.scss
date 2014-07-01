@@ -17,14 +17,15 @@ $notbuilt-color: #333;
   }
 
   .job-list {
-    margin: 0 20px;
+//    margin: 0 20px;
   }
 
   .job {
-    padding: 3px 12px;
-    margin: 0 0 4px;
+//    padding: 3px 12px;
+//    margin: 0 0 4px;
     text-align: left;
     font-size: 22px;
+    height:354px;
   }
 
   .build-info {
@@ -83,8 +84,8 @@ $notbuilt-color: #333;
 
 .widget-jenkins-jobs[data-cols="4"] {
   .job {
-    margin-bottom: 1%;
-    margin-left: 1%;
+//    margin-bottom: 1%;
+//    margin-left: 1%;
     width: 23.75%;
   }
 

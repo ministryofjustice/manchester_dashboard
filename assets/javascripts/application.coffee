@@ -23,3 +23,9 @@ Dashing.on 'ready', ->
       draggable:
         stop: Dashing.showGridsterInstructions
         start: -> Dashing.currentWidgetPositions = Dashing.getWidgetPositions()
+  # `moment` is the moment.js object
+  Batman.Filters.fromNow = (date, format) ->
+    if date is 0
+      "never"
+    else if date?
+      moment(date).fromNow()
