@@ -1,0 +1,142 @@
+// ----------------------------------------------------------------------------
+// Widget-jenkins-jobs styles
+// ----------------------------------------------------------------------------
+$success-color: #4e8200;
+$progress-color: grey;
+$failed-color: #C52846;
+$notbuilt-color: #333;
+
+.widget-jenkins-jobs {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .job-list {
+    margin: 0 20px;
+  }
+
+  .job {
+    padding: 3px 12px;
+    margin: 0 0 4px;
+    text-align: left;
+    font-size: 22px;
+  }
+
+  .build-info {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+  }
+
+  .job-name {
+    display: block;
+    background: {
+      repeat: no-repeat;
+      position: 0 4px;
+    };
+    padding-left: 28px;
+  }
+
+  .job[data-health="health-00to19"] .job-name {
+    background-image: url(/assets/weather/health-00to19.png);
+  }
+
+  .job[data-health="health-20to39"] .job-name {
+    background-image: url(/assets/weather/health-20to39.png);
+  }
+
+  .job[data-health="health-40to59"] .job-name {
+    background-image: url(/assets/weather/health-40to59.png);
+  }    
+
+  .job[data-health="health-60to79"] .job-name {
+    background-image: url(/assets/weather/health-60to79.png);
+  }
+
+  .job[data-health="health-80plus"] .job-name {
+    background-image: url(/assets/weather/health-80plus.png);
+  }
+
+  .job[data-state="blue"] {
+    background-color: $success-color;
+  }
+
+  .job[data-state="red"] {
+    background-color: $failed-color;
+  }
+
+  .job[data-state="grey"] {
+    background-color: $progress-color;
+  }
+
+  .job[data-state="notbuilt"] {
+    background-color: $notbuilt-color;
+    .job-name {
+      padding-left: 0 !important;
+    }
+  }
+}
+
+.widget-jenkins-jobs[data-cols="4"] {
+  .job {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    width: 23.75%;
+  }
+
+  .job:nth-child(4n + 1) {
+    clear: left;
+  }
+}
+
+.widget-jenkins-jobs[data-cols="5"] {
+  .job {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    width: 18.8%;
+  }
+
+  .job:nth-child(5n + 1) {
+    clear: left;
+  }
+}
+
+.widget-jenkins-jobs[data-cols="6"] {
+  .job {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    width: 15.5%;
+  }
+
+  .job:nth-child(6n + 1) {
+    clear: left;
+  }
+}
+
+.widget-jenkins-jobs[data-cols="7"] {
+  .job {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    width: 13.14285%;
+  }
+
+  .job:nth-child(7n + 1) {
+    clear: left;
+  }
+}
+
+.widget-jenkins-jobs[data-cols="8"] {
+  .job {
+    margin-bottom: 1%;
+    margin-left: 1%;
+    width: 11.375%;
+  }
+
+  .job:nth-child(8n + 1) {
+    clear: left;
+  }
+}

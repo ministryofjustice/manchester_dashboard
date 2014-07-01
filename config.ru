@@ -2,6 +2,12 @@ require 'dashing'
 
 configure do
   set :auth_token, 'YOUR_AUTH_TOKEN'
+  
+  
+  set :jenkins, {
+      'url'  => "http://dashboard.local:8080/",
+      'view' => "All"
+    }
 
   helpers do
     def protected!
