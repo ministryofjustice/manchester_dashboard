@@ -1,8 +1,24 @@
-<ul class="job-list">
+<!-- <ul class="job-list">
   <li class="job" data-foreach-job="jobs" data-bind-data-state="job.state" data-bind-data-health="job.health">
     <span class="job-name" data-bind="job.name"></span> 
     <div class="build-info">#<span data-bind="job.number"></span> <span class="timestamp" data-bind="job.timestamp | fromNow"></span></div>
   </li>
 </ul>
 
+<p class="updated-at" data-bind="updatedAtMessage"></p> -->
+
+ <ul class="job-list">
+  <li class="job" data-foreach-job="jobs" data-bind-data-state="job.state" data-bind-data-health="job.health">
+    
+    <!-- <span class="job-name" data-bind="job.name"></span> -->
+
+    <span class="build-status" data-showif="job.state | equals 'notbuilt'">Build status: Not built</span>
+    <span class="build-status" data-showif="job.state | equals 'blue'">Tests passing!</span>
+    <span class="build-status" data-showif="job.state | equals 'red'">Tests failing!</span>
+    <span class="build-status" data-showif="job.state | equals 'Views'"></span>
+    
+    <div class="build-info">Commit #<span data-bind="job.number"></span> / <span class="timestamp" data-bind="job.timestamp | fromNow"></span></div>
+  </li>
+</ul>
+    
 <p class="updated-at" data-bind="updatedAtMessage"></p>

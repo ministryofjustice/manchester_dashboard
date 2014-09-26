@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Widget-jenkins-jobs styles
 // ----------------------------------------------------------------------------
-$success-color: #4e8200;
+$success-color: #96bf48;
 $progress-color: grey;
 $failed-color: #C52846;
 $notbuilt-color: #333;
@@ -17,20 +17,32 @@ $notbuilt-color: #333;
   }
 
   .job-list {
+      list-style: none;
+      padding-left: 0;
 //    margin: 0 20px;
   }
 
   .job {
-//    padding: 3px 12px;
-//    margin: 0 0 4px;
+    padding: 0;
+    margin: 0;
     text-align: left;
     font-size: 22px;
-    height:354px;
+    height: 340px;
+  }
+
+  .build-status{
+    padding-top: 80px;
+    color: #fff;     
+    text-align: center;
+    font-size: 80px;
+    display: block;
   }
 
   .build-info {
     color: rgba(255, 255, 255, 0.8);
     font-size: 16px;
+    text-align: center;
+    display: block;
   }
 
   .job-name {
@@ -133,9 +145,6 @@ $notbuilt-color: #333;
 
 .widget-jenkins-jobs[data-cols="8"] {
   .job {
-    margin-bottom: 1%;
-    margin-left: 1%;
-    width: 11.375%;
   }
 
   .job:nth-child(8n + 1) {
