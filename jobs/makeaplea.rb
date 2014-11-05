@@ -3,13 +3,12 @@ require 'json'
 require 'date'
 
 SCHEDULER.every '1h', :first_in => 0 do
-  #base_url = "localhost:8000"
-  #base_url = "makeaplea.dsd.io"
-  base_url = 'makeaplea.justice.gov.uk'
+  base_url = "http://localhost:8000"
+  #base_url = "https://makeaplea.dsd.io"
+  base_url = 'https://www.makeaplea.justice.gov.uk'
 
-  endpoint = URI("https://"+ base_url + "/api/v1.0/usage-stats/?format=json")
-  hearing_endpoint = URI("https://" + base_url + "/api/v1.0/usage-stats/hearing/?format=json")
-
+  endpoint = URI(base_url + "/api/v1.0/usage-stats/?format=json")
+  hearing_endpoint = URI(base_url + "/api/v1.0/usage-stats/hearing/?format=json")
 
   res = Net::HTTP::get_response(endpoint)
   stats = JSON.parse(res.body)
@@ -49,6 +48,8 @@ SCHEDULER.every '1h', :first_in => 0 do
 
   send_event('guilty_pleas_to_date',   { current: stats['pleas']['to_date']['guilty'] })
   send_event('not_guilty_pleas_to_date',   { current: stats['pleas']['to_date']['not_guilty'] })
+  #send_event('optional_fields_percentage',   { value: stats['additional']['subs_with_optional_fields_percentage'], min: 0, max: 100})
+  #send_event('optional_fields_percentage',   { text: stats['additional']['subs_with_optional_fields_percentage'] +"%"})
   send_event('submissions_to_date',   { current: stats['submissions']['to_date'] })
   send_event('detail',   { :items=>list_data.values })
 end
