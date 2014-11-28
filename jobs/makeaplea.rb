@@ -4,11 +4,11 @@ require 'date'
 
 SCHEDULER.every '1h', :first_in => 0 do
   base_url = "http://localhost:8000"
-  #base_url = "https://makeaplea.dsd.io"
-  base_url = 'https://www.makeaplea.justice.gov.uk'
+  #base_url = "http://api.makeaplea..dsd.io"
+  base_url = 'http://api.makeaplea.justice.gov.uk'
 
-  endpoint = URI(base_url + "/api/v1.0/usage-stats/?format=json")
-  hearing_endpoint = URI(base_url + "/api/v1.0/usage-stats/hearing/?format=json")
+  endpoint = URI(base_url + "/v0/stats/?format=json")
+  hearing_endpoint = URI(base_url + "/v0/stats/by_hearing/?format=json")
 
   res = Net::HTTP::get_response(endpoint)
   stats = JSON.parse(res.body)
