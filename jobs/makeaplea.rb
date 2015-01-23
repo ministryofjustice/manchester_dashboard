@@ -3,9 +3,9 @@ require 'json'
 require 'date'
 
 SCHEDULER.every '1h', :first_in => 0 do
-  #base_url = "http://api.makeaplea..dsd.io"
+  base_url = "http://api.dev.makeaplea..dsd.io"
   #base_url = 'http://api.makeaplea.justice.gov.uk'
-  base_url = "http://localhost:8000"
+  #base_url = "http://localhost:8000"
 
   endpoint = URI(base_url + "/v0/stats/?format=json")
   hearing_endpoint = URI(base_url + "/v0/stats/by_hearing/?format=json")
