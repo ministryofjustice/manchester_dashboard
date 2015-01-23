@@ -10,3 +10,5 @@ gem 'thin'
 gem 'pry'
 
 gem 'nokogiri'
+
+gem 'redcarpet'

@@ -5,6 +5,7 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
+
 $background-color: #222;
 $text-color: #fff;
 
@@ -130,6 +131,7 @@ h3 {
 
 .list-nostyle {
   list-style: none;
+  margin-top: 5px;
 }
 
 .gridster ul {
@@ -247,6 +249,10 @@ h3 {
   padding-top: 5px;
 }
 
+.widget-highchart{
+  padding: 0;
+  -webkit-backface-visibility: hidden;
+}
 
 // ----------------------------------------------------------------------------
 // Clearfix

@@ -1,28 +1,14 @@
-<script type='text/javascript'>
-/*
-$(function() {
-  Dashing.widget_base_dimensions = [370, 340]
-  Dashing.numColumns = 5
-  Dashing.cycleDashboards({timeInSeconds: 60, stagger: true});
-});
-*/
-</script>
-
-<!-- 
-    funky colours: 
-    purple: style="background-color: #9c4274"
-    style="background-color: #ff9618"
--->
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="my_widget" data-view="Text" data-title="makeaplea usage stats" data-text="" data-moreinfo=""></div>
-    </li>
-    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="notused" data-view="Image" data-image="/bee.jpg" data-title="" style="padding: 0; background-color: #ff9618"  ></div>
+    <li data-row="1" data-col="1" data-sizex="3" data-sizey="1">
+      <div data-id="usage_graph" data-view="Highchart" data-title="" data-text="" data-moreinfo=""
+      data-renderer="bar" data-color-scheme="rainbow" data-unstack="false" data-legend="true">
+        <div id="usage_graph">
+        </div>
+      </div>
     </li>
     <li data-row="1" data-col="4" data-sizex="1" data-sizey="2">
-      <div data-id="detail" data-view="List_Plea" data-title="By Hearing Date" data-unordered="true"></div>
+      <div data-id="detail" data-view="List_Plea" data-title="Next 4 hearing dates" data-unordered="true"></div>
     </li>
     <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="submissions_to_date" data-view="Number" data-title="Total submissions" style="background-color: #9c4274" data-moreinfo="A submission can include pleas for multiple charges"></div>
@@ -35,45 +21,4 @@ $(function() {
     </li>
   </ul>
 </div>
-<!-- 
-<div class="gridster">
-  <ul>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
-      <div data-id="detail" data-view="List_Plea" data-title="Pleas By Month" data-unordered="true"></div>
-    </li>
-    <li data-row="1" data-col="2" data-sizex="2" data-sizey="1">
-      <div data-id="my_widget" data-view="Text" data-title="makeaplea usage stats" data-text="page 2..." data-moreinfo=""></div>
-    </li>
-    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="optional_fields_percentage" data-view="Number" data-moreinfo="% of total submissions" data-title="Submissions w/ opt fields" data-moreinfo="Percentage of total submissions"></div>
-    </li>
-    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
-      <div data-id="submissions_to_date" data-view="Number" data-title="Total submissions" style="background-color: #9c4274"></div>
-    </li>
-    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="not_guilty_pleas_to_date" data-view="Number" data-title="Total not guilty pleas" style="background-color: #96bf48;"></div>
-    </li>
-    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="guilty_pleas_to_date" data-view="Number" data-title="Total guilty pleas"></div>
-    </li>
-  </ul>
-</div>
-
-<div class="gridster">
-  <ul>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="my_widget" data-view="Text" data-title="makeaplea ops status" data-text="Work in progress..." data-moreinfo="" style="background-color: #9c4274"></div>
-    </li>
-    <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="coverage" data-view="Text" data-title="Code Coverage" data-text="79%"></div>
-    </li>
-    <li data-row="1" data-col="3" data-sizex="2" data-sizey="1">
-      <div data-id="jenkins_jobs" data-view="Jenkins_Jobs" data-title="Build Status"></div>
-    </li> 
-    <li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
-      <div data-id="notused" data-view="Text" data-title="" style="background-color: #ff9618"></div>
-    </li> 
-  </ul>
-</div>
--->
 

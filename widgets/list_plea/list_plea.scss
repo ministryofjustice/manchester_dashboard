@@ -12,6 +12,9 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
 // Widget-list styles
 // ----------------------------------------------------------------------------
 .widget-list-plea {
+  h1 {
+    margin-bottom: 0;
+  }
 
   background-color: $background-color;
   vertical-align: top;

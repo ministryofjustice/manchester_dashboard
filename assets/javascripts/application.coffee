@@ -4,6 +4,7 @@
 
 #= require_directory .
 #= require_tree ../../widgets
+#= require highcharts.js
 
 console.log("Yeah! The dashboard has started!")
 
