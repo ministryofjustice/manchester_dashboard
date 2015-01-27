@@ -66,8 +66,6 @@ SCHEDULER.every '1h', :first_in => 0 do
   not_guilty_data = []
   submissions = []
 
-  print by_week.map {|item| !item['postal_responses'] ? 0 : item['postal_responses']}
-
     graph_config = {
         "chart" => {
             "type" => "column",
