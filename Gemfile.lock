@@ -102,3 +102,6 @@ DEPENDENCIES
   redcarpet
   thin
   twitter (>= 5.9.0)
+
+BUNDLED WITH
+   1.10.3

@@ -1,0 +1,38 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #47bbb3;
+$value-color:       #fff;
+
+$title-color:       rgba(255, 255, 255, 0.7);
+$moreinfo-color:    rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-number styles
+// ----------------------------------------------------------------------------
+.widget-map-number {
+
+  background-color: $background-color;
+
+  .title {
+    margin-bottom: 0;
+    color: $title-color;
+  }
+
+  .value {
+    color: $value-color;
+  }
+
+  .more-info {
+    position: static;
+    color: $moreinfo-color;
+    font-size: 20px;
+  }
+
+  .updated-at {
+    bottom: 10px;
+    margin: 0 10px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+}

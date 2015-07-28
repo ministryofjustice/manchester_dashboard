@@ -1,24 +1,38 @@
+<script type='text/javascript'>
+$(function() {
+  Dashing.widget_margins = [4,4];
+  Dashing.widget_base_dimensions = [280, 200];
+  Dashing.numColumns = 5;
+});
+</script>
+
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="3" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="submissions_to_date" data-view="Map_Number" data-title="Total submissions" style="background-color: #9c4274" data-moreinfo="A submission can include pleas for multiple charges."></div>
+    </li>
+    <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="not_guilty_pleas_to_date" data-view="Map_Number" data-title="Not guilty pleas" style="background-color: #96bf48;"></div>
+    </li>
+    <li data-row="4" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="guilty_pleas_to_date" data-view="Map_Number" data-title="Guilty pleas" style="background-color: #ff9618"></div>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="3" data-sizey="2">
       <div data-id="usage_graph" data-view="Highchart" data-title="" data-text="" data-moreinfo=""
-      data-renderer="bar" data-color-scheme="rainbow" data-unstack="false" data-legend="true">
+      data-renderer="column" data-color-scheme="rainbow" data-unstack="false" data-legend="true">
         <div id="usage_graph">
         </div>
       </div>
     </li>
-    <li data-row="1" data-col="4" data-sizex="1" data-sizey="2">
-      <div data-id="detail" data-view="List_Plea" data-title="Next 4 hearing dates" data-unordered="true"></div>
+    <li data-row="3" data-col="2" data-sizex="3" data-sizey="2">
+      <div data-id="regions_graph" data-view="Highchart" data-title="" data-text="" data-moreinfo=""
+      data-renderer="bar" data-color-scheme="rainbow" data-unstack="false" data-legend="true">
+        <div id="regions_graph">
+        </div>
+      </div>
     </li>
-    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="submissions_to_date" data-view="Number" data-title="Total submissions" style="background-color: #9c4274" data-moreinfo="A submission can include pleas for multiple charges"></div>
-    </li>
-    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="not_guilty_pleas_to_date" data-view="Number" data-title="Not guilty pleas" style="background-color: #96bf48;"></div>
-    </li>
-    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="guilty_pleas_to_date" data-view="Number" data-title="Guilty pleas" style="background-color: #ff9618"></div>
+    <li data-row="1" data-col="5" data-sizex="1" data-sizey="4">
+      <div data-id="next_hearing_dates" data-view="List_Plea" data-title="Next 4 hearing dates" data-unordered="true"></div>
     </li>
   </ul>
 </div>
-
