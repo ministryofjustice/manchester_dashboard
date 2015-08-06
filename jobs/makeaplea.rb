@@ -3,9 +3,19 @@ require 'json'
 require 'date'
 
 SCHEDULER.every '1h', :first_in => 0 do
-  # base_url = "http://api.makeaplea.dsd.io"
-  # base_url = "http://localhost:8000"
-  base_url = 'http://api.makeaplea.justice.gov.uk'
+
+  release_stage = ENV['RELEASE_STAGE'] || "production"
+  
+  case release_stage
+    when "local"
+      base_url = "http://localhost:8000"
+    when "dev"
+      base_url = "http://api.dev.makeaplea.dsd.io"
+    when "staging"
+      base_url = "http://api.makeaplea.dsd.io"
+    else
+      base_url = "http://api.makeaplea.justice.gov.uk"
+  end
 
   stats_endpoint = URI(base_url + "/v0/stats/?format=json")
 
