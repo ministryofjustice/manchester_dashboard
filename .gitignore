@@ -4,3 +4,4 @@ history.yml
 .idea
 *.swp
 *.swo
+Gemfile.lock
