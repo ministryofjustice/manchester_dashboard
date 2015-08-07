@@ -8,7 +8,7 @@ SCHEDULER.every '1h', :first_in => 0 do
   
   case release_stage
     when "local"
-      base_url = "http://localhost:8000"
+      base_url = "http://localhost:8001"
     when "dev"
       base_url = "http://api.dev.makeaplea.dsd.io"
     when "staging"
@@ -20,7 +20,7 @@ SCHEDULER.every '1h', :first_in => 0 do
   stats_endpoint = URI(base_url + "/v0/stats/?format=json")
 
   # Next hearings
-  next_hearing_dates_endpoint = URI(base_url + "/v0/stats/by_hearing/?format=json")
+  week_hearings_endpoint = URI(base_url + "/v0/stats/by_hearing/?format=json")
 
   # last 6 months by week
   by_week_endpoint = URI(base_url + "/v0/stats/by_week/?format=json")
@@ -31,7 +31,7 @@ SCHEDULER.every '1h', :first_in => 0 do
   res = Net::HTTP::get_response(stats_endpoint)
   stats = JSON.parse(res.body)
 
-  res = Net::HTTP::get_response(next_hearing_dates_endpoint)
+  res = Net::HTTP::get_response(week_hearings_endpoint)
   hearing_stats = JSON.parse(res.body)
 
   res = Net::HTTP::get_response(by_week_endpoint)
@@ -42,7 +42,7 @@ SCHEDULER.every '1h', :first_in => 0 do
 
 
   # Next hearing dates
-  next_hearing_dates = {}
+  week_hearings = {}
 
   hearing_stats.each do |item|
     prefix = item['hearing_day']
@@ -50,23 +50,23 @@ SCHEDULER.every '1h', :first_in => 0 do
 
     heading = dt.strftime("%a %d %b %Y")
 
-    next_hearing_dates[prefix+"_heading"] = {
+    week_hearings[prefix+"_heading"] = {
         :heading=>true,
         :label=>heading,
         :value=>""
     }
 
-    next_hearing_dates[prefix+"_submissions"] = {
+    week_hearings[prefix+"_submissions"] = {
         :label=>"Submissions",
         :value=>item['submissions']
     }
 
-    next_hearing_dates[prefix+"_guilty"] = {
+    week_hearings[prefix+"_guilty"] = {
         :label=>"Guilty",
         :value=>item['guilty']
     }
 
-    next_hearing_dates[prefix+"_not_guilty"] = {
+    week_hearings[prefix+"_not_guilty"] = {
         :label=>"Not Guilty",
         :value=>item['not_guilty']
     }
@@ -230,6 +230,6 @@ SCHEDULER.every '1h', :first_in => 0 do
   send_event('guilty_pleas_to_date',   { current: stats['pleas']['to_date']['guilty'] })
   send_event('not_guilty_pleas_to_date',   { current: stats['pleas']['to_date']['not_guilty'] })
   send_event('submissions_to_date',   { current: stats['submissions']['to_date'] })
-  send_event('next_hearing_dates',   { :items=>next_hearing_dates.values })
+  send_event('week_hearings',   { :items=>week_hearings.values })
 
 end
