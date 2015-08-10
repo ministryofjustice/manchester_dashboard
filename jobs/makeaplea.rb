@@ -55,7 +55,7 @@ SCHEDULER.every '1h', :first_in => 0 do
           "text" => ""
       },
       "xAxis" => {
-          "categories" => by_week.map {|item| Date.parse(item['start_date']).strftime("%d %b %Y")},
+          "categories" => by_week.each_with_index.map {|item,index| index % 2 == 0 ? Date.parse(item['start_date']).strftime("%d %b %Y") : ""},
           "labels" => {
             "type" => "category",
             "rotation" => -45
