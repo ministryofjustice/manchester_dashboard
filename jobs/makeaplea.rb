@@ -205,6 +205,9 @@ SCHEDULER.every '1h', :first_in => 0 do
     },
     "xAxis" => {
         "reversed" => true,
+        "title" => {
+            "text" => "Number of days to hearing"
+          },
         "categories" => response_time.keys,
         "tickInterval" => 10
     },
@@ -218,7 +221,8 @@ SCHEDULER.every '1h', :first_in => 0 do
     "series" => [{
         "name" => "Submissions",
         "data" => response_time.map {|item| item},
-        "type" => "spline"
+        "type" => "spline",
+        "showInLegend" => false
     }],
     "plotOptions" => {
         "spline" => {

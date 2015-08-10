@@ -10,4 +10,4 @@ class Dashing.Highchart extends Dashing.Widget
       @chart = new Highcharts.Chart(
         obj
       )
-    ), 1000
+    ), 3000
