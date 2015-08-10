@@ -19,20 +19,18 @@ SCHEDULER.every '1h', :first_in => 0 do
 
   stats_endpoint = URI(base_url + "/v0/stats/?format=json")
 
-  # Next hearings
-  week_hearings_endpoint = URI(base_url + "/v0/stats/by_hearing/?format=json")
-
   # last 6 months by week
   by_week_endpoint = URI(base_url + "/v0/stats/by_week/?format=json")
 
-  # By region
+  # By court
   by_court_endpoint = URI(base_url + "/v0/stats/by_court/?format=json")
+
+  # Response time
+  response_time_endpoint = URI(base_url + "/v0/stats/days_from_hearing/?format=json")
+
 
   res = Net::HTTP::get_response(stats_endpoint)
   stats = JSON.parse(res.body)
-
-  res = Net::HTTP::get_response(week_hearings_endpoint)
-  hearing_stats = JSON.parse(res.body)
 
   res = Net::HTTP::get_response(by_week_endpoint)
   by_week = JSON.parse(res.body)
@@ -40,43 +38,15 @@ SCHEDULER.every '1h', :first_in => 0 do
   res = Net::HTTP::get_response(by_court_endpoint)
   by_court = JSON.parse(res.body)
 
+  res = Net::HTTP::get_response(response_time_endpoint)
+  response_time = JSON.parse(res.body)
 
-  # Next hearing dates
-  week_hearings = {}
-
-  hearing_stats.each do |item|
-    prefix = item['hearing_day']
-    dt = Date.parse(item['hearing_day'])
-
-    heading = dt.strftime("%a %d %b %Y")
-
-    week_hearings[prefix+"_heading"] = {
-        :heading=>true,
-        :label=>heading,
-        :value=>""
-    }
-
-    week_hearings[prefix+"_submissions"] = {
-        :label=>"Submissions",
-        :value=>item['submissions']
-    }
-
-    week_hearings[prefix+"_guilty"] = {
-        :label=>"Guilty",
-        :value=>item['guilty']
-    }
-
-    week_hearings[prefix+"_not_guilty"] = {
-        :label=>"Not Guilty",
-        :value=>item['not_guilty']
-    }
-  end
 
   # Graph by week
   by_week_graph = {
       "chart" => {
           "type" => "column",
-          "renderTo" => "usage_graph"
+          "renderTo" => "by_week_graph"
       },
       "title" => {
           "text" => 'Make a Plea usage stats by week'
@@ -156,7 +126,7 @@ SCHEDULER.every '1h', :first_in => 0 do
   by_court_graph = {
     "chart" => {
         "type" => "bar",
-        "renderTo" => "courts_graph"
+        "renderTo" => "by_court_graph"
     },
     "title" => {
         "text" => 'Make a Plea usage stats by court'
@@ -225,11 +195,45 @@ SCHEDULER.every '1h', :first_in => 0 do
     }
   }
 
-  send_event('usage_graph', {data: by_week_graph})
-  send_event('regions_graph', {data: by_court_graph})
+  # Reponse time graph
+  response_time_graph = {
+    "chart" => {
+        "type" => "spline"
+    },
+    "title" => {
+        "text" => "Submissions by number of days to hearing"
+    },
+    "xAxis" => {
+        "reversed" => true,
+        "categories" => response_time.keys,
+        "tickInterval" => 10
+    },
+    "yAxis" => {
+        "allowDecimals" => false,
+        "title" => {
+            "text" => ""
+        },
+        "min" => 0
+    },
+    "series" => [{
+        "name" => "Submissions",
+        "data" => response_time.map {|item| item},
+        "type" => "spline"
+    }],
+    "plotOptions" => {
+        "spline" => {
+                "marker" => {
+                    "enabled" => false
+                }
+            }
+    }
+  }
+
+  send_event('by_week_graph', {data: by_week_graph})
+  send_event('by_court_graph', {data: by_court_graph})
+  send_event('response_time_graph', {data: response_time_graph})
   send_event('guilty_pleas_to_date',   { current: stats['pleas']['to_date']['guilty'] })
   send_event('not_guilty_pleas_to_date',   { current: stats['pleas']['to_date']['not_guilty'] })
   send_event('submissions_to_date',   { current: stats['submissions']['to_date'] })
-  send_event('week_hearings',   { :items=>week_hearings.values })
 
 end
