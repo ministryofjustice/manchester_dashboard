@@ -10,11 +10,11 @@ SCHEDULER.every '1h', :first_in => 0 do
     when "local"
       base_url = "http://localhost:8001"
     when "dev"
-      base_url = "http://api.dev.makeaplea.dsd.io"
+      base_url = "https://api.dev.makeaplea.dsd.io"
     when "staging"
-      base_url = "http://api.makeaplea.dsd.io"
+      base_url = "https://api.makeaplea.dsd.io"
     else
-      base_url = "http://api.makeaplea.justice.gov.uk"
+      base_url = "https://api.makeaplea.justice.gov.uk"
   end
 
   stats_endpoint = URI(base_url + "/v0/stats/?format=json")
