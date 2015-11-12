@@ -5,7 +5,7 @@ require 'date'
 SCHEDULER.every '1h', :first_in => 0 do
 
   release_stage = ENV['RELEASE_STAGE'] || "production"
-  
+
   case release_stage
     when "local"
       base_url = "http://localhost:8001"
@@ -34,7 +34,7 @@ SCHEDULER.every '1h', :first_in => 0 do
 
   res = Net::HTTP::get_response(by_week_endpoint)
   by_week = JSON.parse(res.body)
-  
+
   res = Net::HTTP::get_response(by_court_endpoint)
   by_court = JSON.parse(res.body)
 
@@ -236,8 +236,8 @@ SCHEDULER.every '1h', :first_in => 0 do
   send_event('by_week_graph', {data: by_week_graph})
   send_event('by_court_graph', {data: by_court_graph})
   send_event('response_time_graph', {data: response_time_graph})
-  send_event('guilty_pleas_to_date',   { current: stats['pleas']['to_date']['guilty'] })
-  send_event('not_guilty_pleas_to_date',   { current: stats['pleas']['to_date']['not_guilty'] })
-  send_event('submissions_to_date',   { current: stats['submissions']['to_date'] })
+  send_event('guilty_pleas_to_date',   { current: stats['guilty'] })
+  send_event('not_guilty_pleas_to_date',   { current: stats['not_guilty'] })
+  send_event('submissions_to_date',   { current: stats['submissions'] })
 
 end
