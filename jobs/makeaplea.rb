@@ -8,7 +8,7 @@ SCHEDULER.every '1h', :first_in => 0 do
 
   case release_stage
     when "local"
-      base_url = "http://localhost:8001"
+      base_url = "http://10.0.2.2:8001" # 10.0.2.2 is the default host address when using Vagrant
     when "dev"
       base_url = "https://api.dev.makeaplea.dsd.io"
     when "staging"
