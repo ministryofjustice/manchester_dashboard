@@ -2,6 +2,16 @@ require 'net/http'
 require 'json'
 require 'date'
 
+def get_API_response(api_url)
+  uri = URI.parse(api_url)
+  http = Net::HTTP.new(uri.host, uri.port)
+  request = Net::HTTP::Get.new(uri.request_uri)
+  http.use_ssl = (uri.scheme == "https")
+  response = http.request(request)
+
+  return response
+end
+
 SCHEDULER.every '1h', :first_in => 0 do
 
   release_stage = ENV['RELEASE_STAGE'] || "production"
@@ -14,31 +24,31 @@ SCHEDULER.every '1h', :first_in => 0 do
     when "staging"
       base_url = "https://api.makeaplea.dsd.io"
     else
-      base_url = "https://api.makeaplea.justice.gov.uk"
+      base_url = "https://api.makeaplea.service.gov.uk"
   end
 
-  stats_endpoint = URI(base_url + "/v0/stats/?format=json")
+  stats_endpoint = base_url + "/v0/stats/?format=json"
 
   # last 6 months by week
-  by_week_endpoint = URI(base_url + "/v0/stats/by_week/?format=json")
+  by_week_endpoint = base_url + "/v0/stats/by_week/?format=json"
 
   # By court
-  by_court_endpoint = URI(base_url + "/v0/stats/by_court/?format=json")
+  by_court_endpoint = base_url + "/v0/stats/by_court/?format=json"
 
   # Response time
-  response_time_endpoint = URI(base_url + "/v0/stats/days_from_hearing/?format=json")
+  response_time_endpoint = base_url + "/v0/stats/days_from_hearing/?format=json"
 
 
-  res = Net::HTTP::get_response(stats_endpoint)
+  res = get_API_response(stats_endpoint)
   stats = JSON.parse(res.body)
 
-  res = Net::HTTP::get_response(by_week_endpoint)
+  res = get_API_response(by_week_endpoint)
   by_week = JSON.parse(res.body)
 
-  res = Net::HTTP::get_response(by_court_endpoint)
+  res = get_API_response(by_court_endpoint)
   by_court = JSON.parse(res.body)
 
-  res = Net::HTTP::get_response(response_time_endpoint)
+  res = get_API_response(response_time_endpoint)
   response_time = JSON.parse(res.body)
 
 
