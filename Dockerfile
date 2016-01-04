@@ -37,6 +37,5 @@ RUN bundle install
 
 EXPOSE 5111
 
-CMD ['dashing', 'start', '-p 5111']
-
+CMD ["dashing", "start", "-p 5111"]
 
